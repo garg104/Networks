@@ -1,0 +1,66 @@
+==1168422== Memcheck, a memory error detector
+==1168422== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1168422== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==1168422== Command: audiocli 128.10.2.13 55554 pp.au 4096 49152 24576 0.03 0 logfilecli
+==1168422== Parent PID: 1154650
+==1168422== 
+==1168422== Conditional jump or move depends on uninitialised value(s)
+==1168422==    at 0x51A5565: pa_shm_cleanup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x51A57A1: pa_shm_create_rw (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x51954B6: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x511A9B1: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.21.2)
+==1168422==    by 0x484B2B6: conf_pulse_hook_load_if_running (in /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_conf_pulse.so)
+==1168422==    by 0x48A70DD: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7544: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7F21: snd_config_searcha_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A8010: snd_config_searchva_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A811A: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A68F5: snd_config_search_definition (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48C33D5: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==  Uninitialised value was created by a heap allocation
+==1168422==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1168422==    by 0x4A74098: __alloc_dir (opendir.c:118)
+==1168422==    by 0x4A74098: opendir_tail (opendir.c:69)
+==1168422==    by 0x4A74098: opendir (opendir.c:92)
+==1168422==    by 0x51A552F: pa_shm_cleanup (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x51A57A1: pa_shm_create_rw (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x51954B6: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x511A9B1: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.21.2)
+==1168422==    by 0x484B2B6: conf_pulse_hook_load_if_running (in /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_conf_pulse.so)
+==1168422==    by 0x48A70DD: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7544: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7F21: snd_config_searcha_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A8010: snd_config_searchva_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A811A: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422== 
+==1168422== 
+==1168422== Process terminating with default action of signal 2 (SIGINT)
+==1168422==    at 0x497B805: futex_unlock_pi (futex-internal.h:445)
+==1168422==    by 0x497B805: prio_inherit_missing (pthread_mutex_init.c:44)
+==1168422==    by 0x497B805: pthread_mutex_init (pthread_mutex_init.c:77)
+==1168422==    by 0x51B15B4: pa_mutex_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x51955EA: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-13.99.so)
+==1168422==    by 0x511A9B1: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.21.2)
+==1168422==    by 0x484B2B6: conf_pulse_hook_load_if_running (in /usr/lib/x86_64-linux-gnu/alsa-lib/libasound_module_conf_pulse.so)
+==1168422==    by 0x48A70DD: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7544: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A7F21: snd_config_searcha_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A8010: snd_config_searchva_hooks (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A811A: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48A68F5: snd_config_search_definition (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422==    by 0x48C33D5: ??? (in /usr/lib/x86_64-linux-gnu/libasound.so.2.0.0)
+==1168422== 
+==1168422== HEAP SUMMARY:
+==1168422==     in use at exit: 154,660 bytes in 1,917 blocks
+==1168422==   total heap usage: 2,376 allocs, 459 frees, 385,379 bytes allocated
+==1168422== 
+==1168422== LEAK SUMMARY:
+==1168422==    definitely lost: 0 bytes in 0 blocks
+==1168422==    indirectly lost: 0 bytes in 0 blocks
+==1168422==      possibly lost: 58,539 bytes in 1,783 blocks
+==1168422==    still reachable: 96,121 bytes in 134 blocks
+==1168422==         suppressed: 0 bytes in 0 blocks
+==1168422== Rerun with --leak-check=full to see details of leaked memory
+==1168422== 
+==1168422== For lists of detected and suppressed errors, rerun with: -s
+==1168422== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

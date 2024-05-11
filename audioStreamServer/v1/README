@@ -1,0 +1,23 @@
+Run the client process with the following command:
+$audiocli srv-ip srv-port audiofile blocksize buffersize targetbuf lambda method logfilecli 
+Example :  audiocli 128.10.25.210 56555 pp.au 4096 49152 24576 3 1 logfilecli
+
+Run the server process with the following command:
+$audiosrv srv-IP srv-port lambda logfilesrv 
+Example : audiosrv 128.10.25.210 56555 3 logfilesrv
+
+audiocliparam.dat:
+This file should contain two values epsilon and beta, on two seperate lines
+
+The client and server logs files are generated in the same folder from where they are run.
+The client log file have the same name as the name given as arguments while running the client.
+The server logs are created after each audio stream is complete where, the input args filename is appended with a count such as 1,2,... etc. 
+
+Files and their functions:
+server.c -> This file contains the code for the server which opens a UDP socket for file transfer. The client requests are denied if the secret-key send from client does not match the secret-key of the server.  The server sends the file in multiple payloads in batches of the window size specified, and wait for an ack from the client that the sent payloads are received. After receiving the ack, the next payloads are sent. If no ack is received, then the same payloads are retransmitted again to the client. After the final ack(i.e. ack after file transfer is done) is received by the server from the client, the server terminates.
+
+client.c -> This file will try to connect to a server with the given server-IP and server-port. The server will decline the request if the secret-key does not match or the input conditions are not mets. The client will try to send a the secret key and filename wait for the file payloads till 500 milliseconds. The client will try to reconnect 3 times and then exit if it still did not receive any data. The client will send an ack to the server once, all the payloads in the given window size are received, and wait for the next payloads.
+The filename have to be less than or equal to 8 ASCII characters in lower or upper case alphabet. The secret key should be an integer in the interval [0, 65535].
+The client rejects command-line input that does not meet the length specifications.
+
+endian_convertor.c -> This file converts the input unsigned int to byte array in little endian form , and vice versa.
