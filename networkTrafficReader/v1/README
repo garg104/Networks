@@ -1,0 +1,50 @@
+CS 536: Lab 2, Part 2:
+README:
+
+  Important Notes (PLEASE READ):
+    1) To terminate the client/server processes please hit ctrl + c. Interuupt
+       handlers make sure that the sockets are closed properly. Incase of an
+       error message please run both the client and the server again.
+    2) The block size of both the client and the server is the SAME. i.e. the
+       bloksize passed in the arguments of both the client and the server
+       process should be the same.
+    3) The transfered file names are appended with "NEW_". This is to ensure
+       that the files transfered are distinguishable for easier testing.
+    4) make clean removes the transefered files as well.
+    5) Secret key passed will always be in [0. 65535].
+
+
+  Files:
+    1) myftps.c
+      Implementation of the server. This is an implementation which when run
+      models a simple server. The server accepts requests from clients using
+      sockets under TCP protocol and transfers the file requested by the client
+      is the connection is secure and the file exists.
+
+    2) myftpc.c
+      Implementation of the client. This is an implementation which when run,
+      models a simple client. The client sends requests to the server using a
+      socket under TCP protocol and then reads from the socket to store the file
+      requested from the server.
+
+    3) makefile
+      make file to compile and generate the executables. run 'make' to comile
+      and generate execuatebles named recommandserver.bin and recommandclient.bin
+      respectively for server and client. run 'make clean' to remove the
+      executables, object files and the transfered files.
+
+
+  Testing:
+    1) run 'make'
+    2) run 'myftps %s_ip_addr %s_port_no secret_key blocksize'
+    3) run 'myftpc %s_ip_addr %s_port_no filename secret_key blocksize'
+       in another terminal.
+    4) this sends a request from the client terminal. The output should be seen on the
+       client terminal. The ouput is the file size, name of the file created,
+       completion time and throughput in MBps and bps.
+    5) client process should termiante after the request has been completed or
+       will print a suitable message and terminate.
+    6) For multiple clients run 'myftpc' in multiple terminals.
+    7) To stop execution of the server, hit ctrl + c on the server process you want to terminate.
+
+

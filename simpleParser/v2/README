@@ -1,0 +1,47 @@
+CS 536: Lab 1, Part 2:
+README:
+
+  Important Notes:
+    1) To terminate the client/server processes please hit ctrl + c. This makes
+    sure that any fifo created are deleted. In the cases of an un-expected
+    proccess termination, fifos will not be deleted.
+
+  Files:
+    1) server.c
+      Implementation of the server. This is an implementation which when run
+      models a simple server. The server accepts requests from clients using
+      a FIFO and executes the client requests using execvp and then prints
+      the output to its stdout.
+
+    2) client.c
+      Implementation of the client. This is an implementation which when run,
+      models a simple client. The client sends requests to the server using a
+      FIFO.
+
+    3) parser.c
+      Implements the parser function as described in the handout.
+
+    4) parser.h
+      Header file for parser.c
+
+    5) makefile
+      make file to compile and generate the executables. run 'make' to comile
+      and generate execuatebles named commandserver.bin and commandclient.bin
+      respectively for server and client. run 'make clean' to remove the
+      executables and object files.
+
+
+  Testing:
+    1) run 'make'
+    2) run 'commandserver.bin'
+    3) run 'commandclient.bin' in another terminal.
+    4) send a request from the client terminal. The output should be seen on the
+       server terminal.
+    5) For multiple clients run 'commandclient' in multiple terminals.
+    6) To stop execution, hit ctrl + c on the process you want to terminate.
+
+    Note: Run server before client. Running client before will give an error "No
+    FIFO found" as mentioned in the handout.
+
+
+

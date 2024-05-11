@@ -1,0 +1,46 @@
+CS 536: Lab 2, Part 1:
+README:
+
+  Important Notes:
+    1) To terminate the client/server processes please hit ctrl + c. Interuupt
+       handlers make sure that the sockets are closed properly. Incase of an
+       error message please run both the client and the server again.
+
+  Files:
+    1) mypingsrv.c
+      Implementation of the server. This is an implementation which when run
+      models a simple server. The server accepts requests from clients using
+      sockets under UDP protocol and performs the command as specified by the
+      client message. Refer handout for details on commands. 
+
+    2) mypincli.c
+      Implementation of the client. This is an implementation which when run,
+      models a simple client. The client reads the pingparam and sends a ping
+      which follows the params specified. It then prints the RTT per packet.
+
+    3) makefile
+      make file to compile and generate the executables. run 'make' to comile
+      and generate execuatebles named mypingsrv.bin and mypingcli.bin
+      respectively for server and client. run 'make clean' to remove the
+      executables and object files.
+
+    4) pingparam.dat
+      This file specifies the ping params. As mentioned in the handout, it
+      contains 4 integers seperated by commas to specify N, T, D, S. This file
+      is neccesary for client to ping the server. This file will always be in
+      the correct format.
+
+
+  Testing:
+    1) run 'make'
+    2) run 'mypingsrv.bin %s_ip_addr %s_port_no'
+    3) run 'mypingcli.bin %c_ip_addr %s_ip_addr %s_port_no' in another terminal.
+    4) make sure that there exists a valid pingparam.dat before running the
+       client.
+    5) upon running the client, RTT per packet between the specified server and
+       client are outputted.
+    6) To stop execution, hit ctrl + c on the process you want to terminate.
+
+
+
+

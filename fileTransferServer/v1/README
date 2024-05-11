@@ -1,0 +1,77 @@
+CS 536: Lab 4, Part 1:
+README:
+
+  Important Notes (PLEASE READ):
+    0) Connection set up follows the following process and assumptions:
+         a) Client sends a request to the server. This request can reach the
+            server or get dropped.
+         b) If the request is dropped the client will try
+            again after 500 msec as specified by the handout.
+         c) If the request reaches the server, the server will send an ACK
+            back to the client. This ACK will either be get dropped. It it
+            gets dropped client will send the request again to the server.
+            We assume that the RTT of the request and ACK will always take
+            less than 500msec as we limit the RTTs to 2msec in testing as
+            mentioned in the handout.
+         d) If the client recieves the ACK (<500 msec), client will send
+            an ACK for the ACK recieved which we assume will never get
+            dropped and will always reach the server. If this ACK ACK
+            gets dropped lets say, our client will countinue to listen
+            for the file packets but our server will continuoudly wait
+            for the ACK ACK and hence both process will remain blocked.
+            In this case, please interrupt both the process and run both
+            of them again. The following assumptions are vvalid in our
+            scope of the project and our required to make use of an
+            itterative server approach.
+    1) Block size and windowsize of both the client and the server is the
+       SAME. i.e. the bloksize and windowsize passed in the arguments of
+       both the client and the server process should be the same.
+    2) The transfered file names are appended with "NEW_". This is to ensure
+       that the files transfered are distinguishable for easier testing.
+    3) make clean removes the transefered files as well.
+    4) Secret key passed will always be in [0, 65535].
+    5) If the client request is not secure, the server will discard and
+       terminate and will leave the client running as a penalty to try to send
+       an unathorized request.
+
+
+  Files:
+    1) rruners.c
+       Implementation of the server. This is an implementation which when run
+       models a simple server. The server accepts requests from clients using
+       sockets under UDP protocol and transfers the file requested by the client
+       is the connection is secure and the file exists implementing a form of
+       sliding window protocol called roadrunner.
+
+    2) rrunnerc.c
+       Implementation of the client. This is an implementation which when run,
+       models a simple client. The client sends requests to the server using a
+       socket under UDP protocol and then reads from the socket to store the file
+       requested from the server using a form of sliding window protocol called
+       roadrunner.
+
+    3) makefile
+       make file to compile and generate the executables. run 'make' to comile
+       and generate execuatebles named recommandserver.bin and recommandclient.bin
+       respectively for server and client. run 'make clean' to remove the
+       executables, object files and the transfered files.
+
+
+  Testing:
+    1) run 'make'
+    2) run 'rrunners %s_ip_addr %s_port_no secret_key blocksize windowsize timeout'
+    3) run 'rrunnerc %s_ip_addr %s_port_no filename secret_key blocksize windowsize'
+       in another terminal.
+    4) blocksize and windowsize are the same in both the processes.
+    5) this sends a request from the client terminal. The output should be seen on the
+       client terminal. The ouput is the file size, name of the file created,
+       completion time and throughput in MBps and bps.
+    6) client and server processes should termiante after the request has been completed
+       or will print a suitable message and terminate.
+    7) Server will only take 1 client request at a time. Server will have to be
+       run muliple times for multiple requests or clients.
+    8) To stop execution of a process, hit ctrl + c on the server process you want to
+       terminate. This may lead to improper stoppage and not closing of file
+       descriptors.
+
+

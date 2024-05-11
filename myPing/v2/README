@@ -1,0 +1,38 @@
+CS 536: Lab 2, Part 2:
+README:
+
+  Important Notes:
+    1) To terminate the client/server processes please hit ctrl + c. Interuupt
+       handlers make sure that the sockets are closed properly. Incase of an
+       error message please run both the client and the server again.
+
+  Files:
+    1) recommandserver.c
+      Implementation of the server. This is an implementation which when run
+      models a simple server. The server accepts requests from clients using
+      sockets under TCP protocol and executes the client requests using execlp
+      and then writes the output to the respective client's socket.
+
+    2) recommandclient.c
+      Implementation of the client. This is an implementation which when run,
+      models a simple client. The client sends requests to the server using a
+      socket under TCP protocol and then reads from the socket to print out the
+      command executions output to its STDOUT.
+
+    3) makefile
+      make file to compile and generate the executables. run 'make' to comile
+      and generate execuatebles named recommandserver.bin and recommandclient.bin
+      respectively for server and client. run 'make clean' to remove the
+      executables and object files.
+
+
+  Testing:
+    1) run 'make'
+    2) run 'recommandserver.bin %s_ip_addr %s_port_no'
+    3) run 'recommandclient.bin %s_ip_addr %s_port_no' in another terminal.
+    4) send a request from the client terminal. The output should be seen on the
+       client terminal.
+    5) For multiple clients run 'recommandclient' in multiple terminals.
+    6) To stop execution, hit ctrl + c on the process you want to terminate.
+
+
